@@ -1,0 +1,46 @@
+<?php
+
+//crear la matriz de distancias nxn
+
+   $conexion = mysqli_connect("localhost", "rodrigo", "serpell","bicicleta");
+
+if (!$conexion) {
+    echo "No pudo conectarse a la BD: " . mysql_error();
+ 	};
+	
+		
+$query="DROP TABLE IF EXISTS matriz";	
+if (mysqli_query($conexion,$query)){
+		
+		echo "matriz antigua borrada";
+		}
+	else {
+    	echo "Error: " . $q . "<br>" . mysqli_error($conexion);
+		};
+
+
+$crear="CREATE TABLE matriz (
+ id mediumint(8) unsigned default null auto_increment,
+ origen\destino int(3) not null,
+ PRIMARY KEY (id)
+)";	
+
+if (mysqli_query($conexion,$crear)){
+		
+		echo "Tabla matriz creada";
+		}
+	else {
+    	echo "Error: " . $q . "<br>" . mysqli_error($conexion);
+		};
+		
+//encontrar cantidad de nodos
+if ($result = mysqli_query($link, "SELECT MAX(origen) FROM callep2")) {
+    printf("Select returned %d rows.\n", mysqli_num_rows($result));
+
+    /* free result set */
+    mysqli_free_result($result);
+};
+
+//hay que agregar las columnas de 1 hasta n
+$agrandar="ALTER TABLE matriz add $destino int(3)"
+?>
